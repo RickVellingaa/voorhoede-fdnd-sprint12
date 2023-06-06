@@ -1,0 +1,206 @@
+:root {
+    --primary-geel: #ffe400;
+    --primary-blauw: blue;
+    --bg-kleur: #FFFECA;
+    --tekst-kleur: #222222;
+    --column-normal: 2/24;
+    --margin: 10px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    color: var(--tekst-kleur);
+}
+
+@font-face {
+    font-display: swap;
+    font-family: RegularFont;
+    font-style: normal;
+    font-weight: 400;
+    src: url(../assets/Regular.woff2);
+}
+
+@font-face {
+    font-display: swap;
+    font-family: BoldFont;
+    font-style: normal;
+    font-weight: 700;
+    src: url(../assets/Bold.woff2);
+}
+
+/* Navigatiebalk */
+
+nav {
+    display: block;
+    border: 0;
+    text-decoration: none;
+    vertical-align: baseline;
+}
+
+.navigatie-header {
+    top: 0;
+    left: 0;
+    position: absolute;
+    display: grid;
+    width: 100%;
+    z-index: 2;
+}
+
+.navigatie-header::after {
+    background-color: var(--primary-blauw);
+    bottom: 0;
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    opacity: 0.2;
+}
+
+.grid {
+    grid-template-columns: 1fr repeat(11, 20px 35px) 20px calc(35px/2) calc(35px/2) 20px repeat(11,35px 20px) 1fr;
+}
+
+.grid>* {
+    grid-column: 2/50;
+}
+
+.navigatie {
+    height: 4.0625rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    grid-column: var(--column-normal);
+}
+
+.logo {
+    height: 2.125rem;
+    width: auto;
+    outline: none;
+    cursor: pointer;
+}
+
+/* Header */
+
+.header {
+    display: grid;
+    background-color: var(--bg-kleur);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+header {
+    display: grid;
+    grid-template-rows: 4.0625rem 25px 1fr 25px;
+}
+
+.header-content {
+    display: grid;
+    grid-column: var(--column-normal);
+    grid-row: 3/4;
+}
+
+.header-content span {
+    font-size: 30px;
+    font-family: RegularFont;
+    color: var(--primary-blauw);
+}
+
+.header-content h1 {
+    font-size: 50px;
+    font-family: BoldFont;
+    line-height: 60px;
+    color: var(--primary-blauw);
+}
+
+/* Main */
+
+main {
+    position: relative;
+    display: block;
+    /* background-color: red; */
+    width: 100%;
+    height: 100%;
+    padding-top: 75px;
+    padding-bottom: 75px;
+}
+
+/* Footer */
+
+footer {
+    padding: 55px 0;
+    text-align: center;
+    background-color: var(--bg-kleur);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+footer>* {
+    margin: var(--margin) 20px var(--margin) 20px;
+}
+
+footer span {
+    font-size: 33px;
+    font-family: BoldFont;
+    color: var(--primary-blauw);
+}
+
+footer p {
+    font-size: 25px;
+    font-family: RegularFont;
+    max-width: 1000px;
+    
+}
+
+.btn {
+    border-radius: 3px;
+    text-decoration: none;
+    padding: .6rem 1.7rem .6rem;
+    position: relative;
+    cursor: pointer;
+    color: white;
+    font-family: BoldFont;
+    font-size: 16px;
+    background-color: var(--primary-blauw);
+}
+
+/* Responsive */
+
+@media screen and (max-width: 1440px) {
+    :root {
+        --column-normal: 4/24;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    footer p {
+        font-size: 19px;
+    }
+    footer span {
+        font-size: 27px;
+    }    
+}
+
+
+@media screen and (max-width: 440px) {
+    :root {
+        --column-normal: 3/24;
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .header-content span {
+        font-size: 25px;
+    }
+
+    .header-content h1 {
+        font-size: 40px;
+    }
+}
