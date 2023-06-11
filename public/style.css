@@ -126,8 +126,142 @@ main {
     /* background-color: red; */
     width: 100%;
     height: 100%;
-    padding-top: 75px;
+}
+
+/* Searchbar */
+
+.search {
+    padding: 75px 0 75px 0;
+    color: var(--primary-blauw);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search form {
+    width: 40vw;
+}
+
+.search form label {
+    display: inline-block;
+    font-family: RegularFont;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.search form input {
+    display: block;
+    color: var(--tekst-kleur);
+    border: 1px solid var(--primary-blauw);
+    border-radius: 4px;
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+}
+
+.search form input:focus-visible {
+    outline: 1px solid var(--primary-blauw);
+}
+
+/* Blogposts */
+
+.blogs {
+    width: 100%;
+    display: grid;
+    position: relative;
+    grid-template-columns: 1fr repeat(11, 20px 35px) 20px calc(35px/2) calc(35px/2) 20px repeat(11,35px 20px) 1fr;
     padding-bottom: 75px;
+}
+
+.blog-container {
+    display: grid;
+    grid-column: 2/50;
+}
+
+.blogs div section {
+    display: grid;
+    grid-template-columns: .75fr 2fr;
+}
+
+.filters {
+
+}
+
+.filters h2 {
+    font-family: BoldFont;
+    font-size: 23px;
+}
+
+.posts {
+    list-style-type: none;
+}
+
+.posts li:not(:first-child) {
+    margin-top: 30px;
+}
+
+.posts li, .posts li article {
+    position: relative;
+    width: 100%;
+}
+
+.posts li article {
+    padding-left: 10rem;
+}
+
+.posts li article::before {
+    position: absolute;
+    top: 0;
+    left: 8rem;
+    content: "";
+    height: 100%;
+    background: #888888;
+    width: 2px;
+}
+
+time {
+    font-family: RegularFont;
+    font-size: 18px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.posts h3 {
+    font-family: BoldFont;
+    font-size: 23px;
+    color: var(--primary-blauw);
+}
+
+.posts article span:last-child::after{
+    content: "";
+}
+
+.posts article div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.author-image {
+    width: 4em;
+    object-fit: cover;
+    object-position: top;
+    aspect-ratio: 1/1;
+    max-width: 100px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.author-name {
+    margin-right: 5px;
+    font-family: RegularFont;
+    font-size: 18px;
+}
+
+.author-name::after {
+    content: ",";
 }
 
 /* Footer */

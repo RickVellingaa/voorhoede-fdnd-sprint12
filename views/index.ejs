@@ -1,11 +1,43 @@
 <%- include('./partials/head') %>
 
-
 <main>
     <div class="search">
+        <form method="POST" action="/">
+            <label for="search">Search blogs</label>
+            <input id="search" name="search" type="search">
+        </form>
+    </div>
+    <div class="blogs">
+        <div class="blog-container">
+            <section>
+                <div class="filters">
+                    <div>
+                        <h2>Filters</h2>
+                    </div>
+                </div>
+                <div class="blogposts">
+                    <ul class="posts">
+                        <% data.allBlogPosts.forEach(post => { %>
+                        <li>
+                            <article>
+                                <h3><%= post.title %></h3>
+                                <time datetime="<%= post.publishDate %>"><%= post.publishDate %></time>
+                                <div>
+                                    <% post.authors.forEach(author => { %>
+                                    <img class="author-image" src="<%- author.image.url %>" alt="Foto van <%= author.name %>">
+                                    <% }); %>
+                                    <% post.authors.forEach(author => { %>
+                                    <span class="author-name"><%= author.name %></span>
+                                    <% }); %>
+                                </div>
+                            </article>
+                        </li>
+                        <% }); %>
+                    </ul>
+                </div>
+            </section>
+        </div>
     </div>
 </main>
-
-
 
 <%- include('./partials/foot') %>
