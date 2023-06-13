@@ -14,8 +14,8 @@ app.use(express.static('public'))
 app.get('/', async (req, res) => {
   try {
     const query = `
-    query AllBlogPosts {
-      allBlogPosts {
+    query AllBlogPosts($query: String!) {
+      allBlogPosts(filter: { title: { matches: { pattern: $query } } } ) {
         title
         authors {
           image {
@@ -28,8 +28,9 @@ app.get('/', async (req, res) => {
     }
     `;
     
+
     const variables = {
-      query: ''
+      query: '',
     };
 
     const response = await axios.post('https://graphql.datocms.com/', JSON.stringify({
