@@ -26,7 +26,7 @@
                                     <% post.authors.forEach(author => { %>
                                     <img class="author-image" src="<%- author.image.url %>" alt="Foto van <%= author.name %>">
                                     <% }); %>
-                                    <% post.authors.forEach(author => { %>
+                                    <span class="by">By </span><% post.authors.forEach(author => { %>
                                     <span class="author-name"><%= author.name %></span>
                                     <% }); %>
                                 </div>
