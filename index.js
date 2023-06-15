@@ -14,7 +14,6 @@ server.set("views", "./views")
 // Maak een route voor de index
 server.get("/", (request, response) => {
   const searchTerm = request.query.searchbar || ""
-  console.log(request.query.searchbar)
   graphQLRequest(
     `query AllBlogPosts($searchbar: String!, $orderBy: [BlogPostModelOrderBy]) {
       allBlogPosts(orderBy: $orderBy, filter: { title: { matches: { pattern: $searchbar } } } ) {
@@ -46,7 +45,7 @@ async function graphQLRequest(gql = "", variables = {}) {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": process.env.GRAPHQL_KEY,
+            "Authorization": '10a0ae10c2d6418c1acd4346de9329',
         },
         body: JSON.stringify({
             query: gql,
