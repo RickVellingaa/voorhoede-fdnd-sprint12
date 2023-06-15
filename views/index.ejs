@@ -1,42 +1,41 @@
 <%- include('./partials/head') %>
 
 <main>
-    <div class="search">
+    <div class="searchbar">
         <form method="get" action="/">
             <label for="search">Search blogs</label>
-            <input id="search" name="searchbar" type="search">
+            <input type="search" name="searchbar" id="search">
         </form>
     </div>
     <div class="blogs">
-        <div class="blog-container">
-            <section>
-                <div class="filters">
+       <section class="filters">
+            <h2>Filters</h2>
+       </section>
+       <ul>
+        <% posts.forEach(post => { %>
+            <li>
+                <article>
                     <div>
-                        <h2>Filters</h2>
+                        <a href="https://www.voorhoede.nl/en/blog/<%- post.slug %>">
+                            <h2><%= post.title %></h2>
+                        </a>
+                        <p><%= post.introTitle %></p>
                     </div>
-                </div>
-                <div class="blogposts">
-                    <ul class="posts">
-                        <% posts.forEach(post => { %>
-                        <li>
-                            <article>
-                                <h3><%= post.title %></h3>
-                                <time datetime="<%= post.publishDate %>"><%= post.publishDate %></time>
-                                <div>
-                                    <% post.authors.forEach(author => { %>
-                                    <img class="author-image" src="<%- author.image.url %>" alt="Foto van <%= author.name %>">
-                                    <% }); %>
-                                    <span class="by">By </span><% post.authors.forEach(author => { %>
-                                    <span class="author-name"><%= author.name %></span>
-                                    <% }); %>
-                                </div>
-                            </article>
-                        </li>
-                        <% }); %>
-                    </ul>
-                </div>
-            </section>
-        </div>
+                    <div class="author">
+                        <div>
+                            <% post.authors.forEach(author => { %>
+                                <img class="author-image" src="<%- author.image.url %>" alt="Foto van <%= author.name %>">
+                            <% }); %>
+                            <span class="by">By</span><% post.authors.forEach(author => { %>
+                                <span class="author-name"><%= author.name %></span>
+                            <% }); %>
+                        </div>
+                        <time datetime="<%= post.publishDate %>"><%= post.publishDate %></time>
+                    </div>
+                </article>
+            </li>
+            <% }); %>
+       </ul>
     </div>
 </main>
 
