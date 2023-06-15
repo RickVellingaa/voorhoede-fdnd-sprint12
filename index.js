@@ -1,5 +1,8 @@
 import express, { response } from 'express'
+import dotenv from "dotenv"
 import axios from 'axios'
+
+dotenv.config()
 
 const app = express()
 
@@ -38,7 +41,7 @@ app.get('/', async (req, res) => {
       variables
     }), {
       headers: {
-        Authorization: '10a0ae10c2d6418c1acd4346de9329'
+        Authorization: process.env.GRAPHQL_KEY,
       }
     });
 
