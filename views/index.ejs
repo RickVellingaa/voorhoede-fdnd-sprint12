@@ -2,9 +2,9 @@
 
 <main>
     <div class="search">
-        <form method="POST" action="/">
+        <form method="get" action="/">
             <label for="search">Search blogs</label>
-            <input id="search" name="search" type="search">
+            <input id="search" name="searchbar" type="search">
         </form>
     </div>
     <div class="blogs">
@@ -17,7 +17,7 @@
                 </div>
                 <div class="blogposts">
                     <ul class="posts">
-                        <% data.allBlogPosts.forEach(post => { %>
+                        <% posts.forEach(post => { %>
                         <li>
                             <article>
                                 <h3><%= post.title %></h3>

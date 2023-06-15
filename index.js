@@ -1,24 +1,23 @@
-import express, { response } from 'express'
+import express from "express"
 import dotenv from "dotenv"
-import axios from 'axios'
+import fetch from "node-fetch"
 
 dotenv.config()
 
-const app = express()
+const server = express()
 
-// Stel ejs in als template engine en geef de 'views' map door
-app.set('view engine', 'ejs')
-app.set('views', './views')
+// Views en public instellen
+server.use(express.static("public"))
+server.set("view engine", "ejs")
+server.set("views", "./views")
 
-// Gebruik de map 'public' voor statische resources
-app.use(express.static('public'))
-
-
-app.get('/', async (req, res) => {
-  try {
-    const query = `
-    query AllBlogPosts($query: String!) {
-      allBlogPosts(filter: { title: { matches: { pattern: $query } } } ) {
+// Maak een route voor de index
+server.get("/", (request, response) => {
+  const searchTerm = request.query.searchbar || ""
+  console.log(request.query.searchbar)
+  graphQLRequest(
+    `query AllBlogPosts($searchbar: String!, $orderBy: [BlogPostModelOrderBy]) {
+      allBlogPosts(orderBy: $orderBy, filter: { title: { matches: { pattern: $searchbar } } } ) {
         title
         authors {
           image {
@@ -27,38 +26,39 @@ app.get('/', async (req, res) => {
           name
         }
         publishDate
+        introTitle
+        slug
       }
-    }
-    `;
-    
-
-    const variables = {
-      query: '',
-    };
-
-    const response = await axios.post('https://graphql.datocms.com/', JSON.stringify({
-      query,
-      variables
-    }), {
-      headers: {
-        Authorization: process.env.GRAPHQL_KEY,
-      }
-    });
-
-    const data = response.data.data;
-    console.log(data);
-
-    res.render('index', { data });
-  } catch (error) {
-
-  }
-});
-
-// Stel het poortnummer in waar express op gaat luisteren
-app.set('port', process.env.PORT || 8000)
-
-// Start express op, haal het ingestelde poortnummer op
-app.listen(app.get('port'), function () {
-  // Toon een bericht in de console en geef het poortnummer door
-  console.log(`Application started on http://localhost:${app.get('port')}`)
+    }`, {"orderBy": "updatedAt_DESC", "searchbar": searchTerm}).then((data) => {
+      response.render('index', { posts: data.data.allBlogPosts });
+  })
 })
+
+// Stel het poortnummer in en start express
+server.set("port", process.env.PORT || 8000)
+server.listen(server.get("port"), function () {
+  console.log(`Application started on http://localhost:${server.get("port")}`)
+})
+
+// Functie GraphQL ophalen
+async function graphQLRequest(gql = "", variables = {}) {
+    return await fetch("https://graphql.datocms.com", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": process.env.GRAPHQL_KEY,
+        },
+        body: JSON.stringify({
+            query: gql,
+            variables,
+        }),
+    })
+        .then(async response => {
+          const body = await response.json()
+          if (body.errors) {
+            throw new Error(JSON.stringify(body.errors, null, 2))
+          }
+          return body
+        })
+        .catch(error => console.log(error))
+}
