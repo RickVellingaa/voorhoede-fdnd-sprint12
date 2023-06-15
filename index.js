@@ -45,7 +45,7 @@ async function graphQLRequest(gql = "", variables = {}) {
       method: "POST",
       headers: {
           "Content-Type": "application/json",
-          "Authorization": process.env.GRAPHQL_KEY,
+          "Authorization": '10a0ae10c2d6418c1acd4346de9329',
       },
       body: JSON.stringify({
           query: gql,

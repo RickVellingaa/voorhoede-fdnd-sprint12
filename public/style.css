@@ -113,35 +113,64 @@ main {
 /* Searchbar */
 
 .searchbar {
-    font-family: RegularFont;
-    margin-bottom: 5px;
+    padding-bottom: 75px;
     display: flex;
     justify-content: center;
-    padding-bottom: 75px;
+    align-items: center;
 }
 
-form label {
-    display: block;
-}
-
-input[type="search"] {
-    margin-right: 5px;
+.searchbar form {
+    color: #555;
+    display: flex;
+    width: 40vw;
+    min-width: 294px;
     border: 1px solid var(--primary-blauw);
-    border-radius: 4px;
-    width: 40em;
-    font-family: RegularFont;
-    padding: 10px;
+    border-radius: 5px;
 }
 
-input:focus-visible {
-    outline: 1px solid var(--primary-blauw);
+.searchbar input[type="search"] {
+    border: none;
+    background: transparent;
+    margin: 0;
+    padding: 10px;
+    font-size: 14px;
+    width: 100%;
+    color: inherit;
+    border: 1px solid transparent;
+    border-radius: inherit;
+}
+
+input[type="search"]::placeholder {
+    color: #bbb;
+}
+
+.searchbar button[type="submit"] {
+    text-indent: -999px;
+    overflow: hidden;
+    width: 40px;
+    padding: 0;
+    margin: 5px 0;
+    border: none;
+    border-left: 1px solid var(--primary-blauw);
+    background: transparent url("./assets/Search.svg") no-repeat center;
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+.searchbar button[type="submit"]:hover {
+    opacity: 1;
+}
+
+.searchbar button[type="submit"]:focus,
+.searchbar input[type="search"]:focus, .searchbar input[type="checkbox"]:focus {
+    outline: none;
 }
 
 /* Blog */
 
 .blogs {
     width: 100%;
-    display: grid; 
+    display: grid;
     grid-template-columns: .6fr 2.4fr;
     gap: 35px;
     list-style-type: none;
@@ -155,8 +184,10 @@ input:focus-visible {
     width: 100%;
 }
 
-.blogs h2 {
+h2 {
     font-size: 23px;
+    color: var(--primary-blauw);
+    font-family: BoldFont;
 }
 
 .blogs p {
@@ -177,7 +208,9 @@ input:focus-visible {
     font-family: BoldFont;
 }
 
-.blogs p, .blogs span, time {
+.blogs p,
+.blogs span,
+time {
     font-family: RegularFont;
 }
 
@@ -212,7 +245,8 @@ input:focus-visible {
     margin-left: 3px;
 }
 
-.author-name, .by {
+.author-name,
+.by {
     margin-left: 3px;
 }
 
@@ -254,7 +288,7 @@ footer p {
     font-size: 25px;
     font-family: RegularFont;
     max-width: 1000px;
-    
+
 }
 
 .btn {
@@ -269,32 +303,35 @@ footer p {
     background-color: var(--primary-blauw);
 }
 
-/* Responsive */  
+/* Responsive */
 
 
 @media screen and (max-width: 1300px) {
-    :root{
+    :root {
         --padding-side: 3rem;
     }
-    .blogs ul{
+
+    .blogs ul {
         grid-template-columns: 1fr;
-    }  
+    }
 }
 
 @media screen and (max-width: 975px) {
     .blogs {
         grid-template-columns: 1fr;
-    }  
+    }
 }
 
 @media screen and (max-width: 750px) {
-    :root{
+    :root {
         --padding-side: 2rem;
     }
+
     footer p {
         font-size: 19px;
     }
+
     footer span {
         font-size: 27px;
-    }    
+    }
 }
