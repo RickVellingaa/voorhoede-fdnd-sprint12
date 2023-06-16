@@ -119,6 +119,23 @@ main {
     align-items: center;
 }
 
+.searchbar label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--primary-blauw);
+    font-family: RegularFont;
+}
+
+.sort {
+    font-family: RegularFont;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+    width: 100%;
+    font-size: 16px;
+}
+
 .searchbar form {
     color: #555;
     display: flex;
@@ -126,6 +143,12 @@ main {
     min-width: 294px;
     border: 1px solid var(--primary-blauw);
     border-radius: 5px;
+}
+
+.author-filter h3 {
+    font-family: BoldFont;
+    font-size: 18px;
+    margin: 10px 0;
 }
 
 .searchbar input[type="search"] {
@@ -164,7 +187,49 @@ input[type="search"]::placeholder {
 .searchbar button[type="submit"]:focus,
 .searchbar input[type="search"]:focus, .searchbar input[type="checkbox"]:focus {
     outline: none;
+    background: transparent;
 }
+
+input[type=checkbox] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    z-index: 1;
+    height: 100%;
+    aspect-ratio: 1/1;
+    /* opacity: 0; */
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .container {
+    display: block;
+    font-size: 16px;
+    font-family: RegularFont;
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 5px;
+    border: 1px solid var(--primary-blauw);
+    transition: .3s;
+  }
+
+  .container input:checked ~ .checkmark {
+    transition: .3s;
+    background-color: var(--primary-blauw);
+  }
+
 
 /* Blog */
 

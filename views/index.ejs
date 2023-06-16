@@ -2,18 +2,54 @@
 
 <main>
     <div class="searchbar">
-        <form id="search" method="get" action="/">
-            <input type="search" name="searchbar" id="search">
-            <button type="submit"></button>
-        </form>
+        <div>
+            <label for="search" form="search">Search blogs</label>
+            <form id="search" method="get" action="/">
+                <input autocomplete="off" type="search" name="searchbar" id="search">
+                <button type="submit"></button>
+            </form>
+            <section class="sort">
+                <div></div>
+                <div></div>
+            </section>
+        </div>
     </div>
     <div class="blogs">
-       <section class="filters">
+        <section class="filters">
             <h2>Filters</h2>
-                <input form="search" type="checkbox" name="" id="">
-       </section>
-       <ul>
-        <% posts.forEach(post => { %>
+            <section class="author-filter">
+                <h3>Authors</h3>
+                <label class="container first" for="Jasper"> Jasper
+                    <input class="checked" onclick="checkedOnClick(this);" form="search" value="340340" type="checkbox" name="authorid" id="Jasper">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container first" for="Vera"> Vera
+                    <input class="checked" onclick="checkedOnClick(this);" form="search" value="122738219" type="checkbox" name="authorid" id="Vera">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container first" for="Sjoerd"> Sjoerd
+                    <input class="checked" onclick="checkedOnClick(this);" form="search" value="4585143" type="checkbox" name="authorid" id="Sjoerd">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container first" for="Misha"> Misha
+                    <input class="checked" onclick="checkedOnClick(this);" form="search" value="147119401" type="checkbox" name="authorid" id="Misha">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container first" for="Declan"> Declan
+                    <input class="checked" onclick="checkedOnClick(this);" form="search" value="340344" type="checkbox" name="authorid" id="Declan">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container first" for="Roos"> Roos
+                    <input class="checked" onclick="checkedOnClick(this);" form="search" value="122281136" type="checkbox" name="authorid" id="Roos">
+                    <span class="checkmark"></span>
+                </label>
+            </section>
+            <section class="author-filter">
+                <h3>Tags</h3>
+            </section>
+        </section>
+        <ul>
+            <% posts.forEach(post => { %>
             <li>
                 <article>
                     <div>
@@ -25,10 +61,10 @@
                     <div class="author">
                         <div>
                             <% post.authors.forEach(author => { %>
-                                <img class="author-image" src="<%- author.image.url %>" alt="Foto van <%= author.name %>">
+                            <img class="author-image" src="<%- author.image.url %>" alt="Foto van <%= author.name %>">
                             <% }); %>
                             <span class="by">By</span><% post.authors.forEach(author => { %>
-                                <span class="author-name"><%= author.name %></span>
+                            <span class="author-name"><%= author.name %></span>
                             <% }); %>
                         </div>
                         <time datetime="<%= post.publishDate %>"><%= post.publishDate %></time>
@@ -36,7 +72,7 @@
                 </article>
             </li>
             <% }); %>
-       </ul>
+        </ul>
     </div>
 </main>
 

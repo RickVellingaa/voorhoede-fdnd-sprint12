@@ -14,21 +14,25 @@ server.set("views", "./views")
 // Maak een route voor de index
 server.get("/", (request, response) => {
   const searchTerm = request.query.searchbar || ""
+  const authorFilter = request.query.authorid
+  console.log(authorFilter);
+
   graphQLRequest(
-    `query AllBlogPosts($searchbar: String!, $orderBy: [BlogPostModelOrderBy]) {
-      allBlogPosts(orderBy: $orderBy, filter: { title: { matches: { pattern: $searchbar } } } ) {
+    `query AllBlogPosts($authorFilter: [ItemId], $searchbar: String!, $orderBy: [BlogPostModelOrderBy]) {
+      allBlogPosts(orderBy: $orderBy, filter: { authors: { eq: $authorFilter }, title: { matches: { pattern: $searchbar } } }) {
         title
         authors {
           image {
             url
           }
           name
+          id
         }
         publishDate
         introTitle
         slug
       }
-    }`, {"orderBy": "updatedAt_DESC", "searchbar": searchTerm}).then((data) => {
+    }`, {"orderBy": "updatedAt_DESC", "searchbar": searchTerm, "authorFilter": authorFilter}).then((data) => {
       response.render('index', { posts: data.data.allBlogPosts });
   })
 })
