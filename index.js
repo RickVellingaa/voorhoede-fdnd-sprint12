@@ -13,13 +13,20 @@ server.set("views", "./views")
 
 // Maak een route voor de index
 server.get("/", (request, response) => {
+
   const searchTerm = request.query.searchbar || ""
   const authorFilter = request.query.authorid
-  console.log(authorFilter);
+
+  // Datum filter
+  const date = new Date();
+  const currentDate = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
+
+  const dateFrom = request.query.datefrom || "1700-01-01"
+  const dateTo = request.query.dateto || currentDate
 
   graphQLRequest(
-    `query AllBlogPosts($authorFilter: [ItemId], $searchbar: String!, $orderBy: [BlogPostModelOrderBy]) {
-      allBlogPosts(orderBy: $orderBy, filter: { authors: { eq: $authorFilter }, title: { matches: { pattern: $searchbar } } }) {
+    `query AllBlogPosts($dateFrom: Date, $dateTo: Date,$authorFilter: [ItemId], $searchbar: String!, $orderBy: [BlogPostModelOrderBy]) {
+      allBlogPosts(orderBy: $orderBy, filter: { publishDate: { gt: $dateFrom, lt: $dateTo} ,authors: { eq: $authorFilter }, title: { matches: { pattern: $searchbar } } }) {
         title
         authors {
           image {
@@ -32,7 +39,7 @@ server.get("/", (request, response) => {
         introTitle
         slug
       }
-    }`, {"orderBy": "updatedAt_DESC", "searchbar": searchTerm, "authorFilter": authorFilter}).then((data) => {
+    }`, {"orderBy": "updatedAt_DESC", "searchbar": searchTerm, "authorFilter": authorFilter, "dateFrom": dateFrom, "dateTo": dateTo}).then((data) => {
       response.render('index', { posts: data.data.allBlogPosts });
   })
 })

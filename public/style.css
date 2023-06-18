@@ -230,6 +230,44 @@ input[type=checkbox] {
     background-color: var(--primary-blauw);
   }
 
+  .date-filter {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    flex-direction: row;
+  }
+
+  .date-filter div {
+    display: flex;
+    width: auto;
+    flex-direction: column;
+  }
+
+  .date-filter label {
+    font-family: RegularFont;
+    margin-bottom: 5px;
+    color: rgba(34, 34, 34, 0.7);
+  }
+
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    width: 15px;
+    padding: 5px;
+    margin: 0px;
+    background: url("../assets/Agenda.svg") no-repeat;
+    cursor: pointer;
+}    
+
+input[type="date"] {
+    padding: 5px;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    font-family: RegularFont;
+}
+
+.date-filter [type="date"]:last-child {
+    margin-right: 10px;
+}
 
 /* Blog */
 
@@ -398,5 +436,27 @@ footer p {
 
     footer span {
         font-size: 27px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .blogs article {
+        padding: 10px;
+    }
+
+    .blogs ul {
+        gap: 15px;
+    }
+
+    a h2 {
+        font-size: 20px;
+    }
+
+    .blogs p, .author time, .author span {
+        font-size: 15px;
+    }
+
+    :root {
+        --padding-side: 1rem;
     }
 }
