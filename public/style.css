@@ -136,6 +136,13 @@ main {
     font-size: 16px;
 }
 
+.search-blog {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--primary-blauw);
+    font-family: RegularFont;
+}
+
 .searchbar form {
     color: #555;
     display: flex;
@@ -190,63 +197,105 @@ input[type="search"]::placeholder {
     background: transparent;
 }
 
-input[type=checkbox] {
+
+.author-filter div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+
+[type="radio"]:checked + label,
+[type="radio"]:not(:checked) + label
+{
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+}
+[type="radio"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before {
+    content: '';
     position: absolute;
     left: 0;
     top: 0;
-    opacity: 0;
-    z-index: 1;
-    height: 100%;
-    aspect-ratio: 1/1;
-    /* opacity: 0; */
-    border-radius: 5px;
-    cursor: pointer;
-  }
+    width: 18px;
+    height: 18px;
+    border: 1px solid var(--primary-blauw);
+    border-radius: 100%;
+    background: #fff;
+}
+[type="radio"]:checked + label:after,
+[type="radio"]:not(:checked) + label:after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background: var(--primary-blauw);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
 
-  .container {
-    display: block;
+[type="radio"]:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+[type="radio"]:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+.author-filter label {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
     font-size: 16px;
     font-family: RegularFont;
     position: relative;
-    padding-left: 25px;
-    margin-bottom: 10px;
     cursor: pointer;
+    padding-left: 10px;
     user-select: none;
-  }
+}
 
-  .checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    aspect-ratio: 1/1;
-    border-radius: 5px;
-    border: 1px solid var(--primary-blauw);
-    transition: .3s;
-  }
+.author-filter div input {
+    font-size: 16px;
+}
 
-  .container input:checked ~ .checkmark {
-    transition: .3s;
-    background-color: var(--primary-blauw);
-  }
 
   .date-filter {
     display: flex;
-    justify-content: flex-start;
     align-items: center;
-    width: 100%;
-    flex-direction: row;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+    font-size: 16px;
   }
 
   .date-filter div {
     display: flex;
     width: auto;
+    justify-content: flex-start;
+    align-items: flex-start;
     flex-direction: column;
   }
 
   .date-filter label {
     font-family: RegularFont;
     margin-bottom: 5px;
+    padding-left: 0px;
     color: rgba(34, 34, 34, 0.7);
   }
 
@@ -265,6 +314,7 @@ input[type="date"] {
     font-family: RegularFont;
     border: 1px solid var(--primary-blauw);
     border-radius: 5px;
+    font-size: 16px;
 }
 
 input[type="date"]:focus {

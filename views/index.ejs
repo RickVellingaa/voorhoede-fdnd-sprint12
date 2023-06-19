@@ -3,15 +3,16 @@
 <main>
     <div class="searchbar">
         <div>
-            <label for="search" form="search">Search blogs</label>
+            <p class="search-blog">Search blogs</p>
             <form id="search" method="get" action="/">
-                <input autocomplete="off" type="search" name="searchbar" id="search">
+                <input autocomplete="off" type="search" name="searchbar">
                 <button type="submit"></button>
             </form>
-            <section class="sort">
-                <div><p><%= totalBlogs %> blogs found</p></div>
-                <div></div>
-            </section>
+            <div class="sort">
+                <div>
+                    <p><%= totalBlogs %> blogs found</p>
+                </div>
+            </div>
         </div>
     </div>
     <div class="blogs">
@@ -32,30 +33,30 @@
             </section>
             <section class="author-filter">
                 <h3>Authors</h3>
-                <label class="container first" for="Jasper"> Jasper
-                    <input class="checked" onclick="checkedOnClick(this);" form="search" value="340340" type="checkbox" name="authorid" id="Jasper">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="container first" for="Vera"> Vera
-                    <input class="checked" onclick="checkedOnClick(this);" form="search" value="122738219" type="checkbox" name="authorid" id="Vera">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="container first" for="Sjoerd"> Sjoerd
-                    <input class="checked" onclick="checkedOnClick(this);" form="search" value="4585143" type="checkbox" name="authorid" id="Sjoerd">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="container first" for="Misha"> Misha
-                    <input class="checked" onclick="checkedOnClick(this);" form="search" value="147119401" type="checkbox" name="authorid" id="Misha">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="container first" for="Declan"> Declan
-                    <input class="checked" onclick="checkedOnClick(this);" form="search" value="340344" type="checkbox" name="authorid" id="Declan">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="container first" for="Roos"> Roos
-                    <input class="checked" onclick="checkedOnClick(this);" form="search" value="122281136" type="checkbox" name="authorid" id="Roos">
-                    <span class="checkmark"></span>
-                </label>
+                <div>
+                    <input form="search" value="340340" type="radio" name="authorid" id="Jasper">
+                    <label for="Jasper">Jasper</label>
+                </div>
+                <div>
+                    <input form="search" value="122738219" type="radio" name="authorid" id="Vera">
+                    <label for="Vera">Vera</label>
+                </div>
+                <div>
+                    <input form="search" value="4585143" type="radio" name="authorid" id="Sjoerd">
+                    <label for="Sjoerd">Sjoerd</label>
+                </div>
+                <div>
+                    <input form="search" value="147119401" type="radio" name="authorid" id="Misha">
+                    <label for="Misha">Misha</label>
+                </div>
+                <div>
+                    <input form="search" value="340344" type="radio" name="authorid" id="Declan">
+                    <label for="Declan">Declan</label>
+                </div>
+                <div>
+                    <input form="search" value="122281136" type="radio" name="authorid" id="Roos">
+                    <label for="Roos">Roos</label>
+                </div>
             </section>
         </section>
         <ul>
