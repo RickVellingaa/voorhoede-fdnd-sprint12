@@ -40,7 +40,9 @@ server.get("/", (request, response) => {
         slug
       }
     }`, {"orderBy": "updatedAt_DESC", "searchbar": searchTerm, "authorFilter": authorFilter, "dateFrom": dateFrom, "dateTo": dateTo}).then((data) => {
-      response.render('index', { posts: data.data.allBlogPosts });
+      const totalBlogs = data.data.allBlogPosts.length
+
+      response.render('index', { posts: data.data.allBlogPosts, totalBlogs });
   })
 })
 

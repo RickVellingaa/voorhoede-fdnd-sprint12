@@ -9,7 +9,7 @@
                 <button type="submit"></button>
             </form>
             <section class="sort">
-                <div></div>
+                <div><p><%= totalBlogs %> blogs found</p></div>
                 <div></div>
             </section>
         </div>
@@ -17,6 +17,19 @@
     <div class="blogs">
         <section class="filters">
             <h2>Filters</h2>
+            <section class="author-filter">
+                <h3>Date</h3>
+                <div class="date-filter">
+                    <div>
+                        <label for="dateFrom">From</label>
+                        <input form="search" name="datefrom" id="dateFrom" type="date">
+                    </div>
+                    <div>
+                        <label for="dateTo">To</label>
+                        <input form="search" name="dateto" id="dateTo" type="date">
+                    </div>
+                </div>
+            </section>
             <section class="author-filter">
                 <h3>Authors</h3>
                 <label class="container first" for="Jasper"> Jasper
@@ -43,19 +56,6 @@
                     <input class="checked" onclick="checkedOnClick(this);" form="search" value="122281136" type="checkbox" name="authorid" id="Roos">
                     <span class="checkmark"></span>
                 </label>
-            </section>
-            <section class="author-filter">
-                <h3>Date</h3>
-                <div class="date-filter">
-                    <div>
-                        <label for="dateFrom">From</label>
-                        <input form="search" name="datefrom" id="dateFrom" type="date">
-                    </div>
-                    <div>
-                        <label for="dateTo">To</label>
-                        <input form="search" name="dateto" id="dateTo" type="date">
-                    </div>
-                </div>
             </section>
         </section>
         <ul>

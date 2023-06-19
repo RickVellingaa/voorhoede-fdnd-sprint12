@@ -263,6 +263,12 @@ input[type="date"] {
     flex-direction: row-reverse;
     justify-content: space-between;
     font-family: RegularFont;
+    border: 1px solid var(--primary-blauw);
+    border-radius: 5px;
+}
+
+input[type="date"]:focus {
+    outline: var(--primary-blauw);
 }
 
 .date-filter [type="date"]:last-child {
