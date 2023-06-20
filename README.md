@@ -84,7 +84,7 @@ Open de terminal in Visual Studio Code en installeer Node doormiddel van het com
 
 ## Bronnen
 
-[DOCS Sprint12]([https://github.com/RickVellingaa/voorhoede-fdnd-sprint12/blob/main/docs/FDND%20API%20Assignment.pdf](https://github.com/RickVellingaa/voorhoede-fdnd-sprint12/blob/main/docs/INSTRUCTIONS.md)) <br>
+[DOCS Sprint12](https://github.com/RickVellingaa/voorhoede-fdnd-sprint12/blob/main/docs/INSTRUCTIONS.md)) <br>
 [Voorhoede officele website](https://www.voorhoede.nl/en/) <br>
 [ChatGPT](https://chat.openai.com/) <br>
 [Developer Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/Location) 
