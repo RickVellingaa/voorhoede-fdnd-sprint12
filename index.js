@@ -23,10 +23,12 @@ server.get("/", (request, response) => {
 
   const dateFrom = request.query.datefrom || "1700-01-01"
   const dateTo = request.query.dateto || currentDate
+  const blogAmount = 60
+  const sortBy = request.query.sort || "updatedAt_DESC"
 
   graphQLRequest(
-    `query AllBlogPosts($dateFrom: Date, $dateTo: Date,$authorFilter: [ItemId], $searchbar: String!, $orderBy: [BlogPostModelOrderBy]) {
-      allBlogPosts(orderBy: $orderBy, filter: { publishDate: { gt: $dateFrom, lt: $dateTo} ,authors: { eq: $authorFilter }, title: { matches: { pattern: $searchbar } } }) {
+    `query AllBlogPosts($first: IntType, $dateFrom: Date, $dateTo: Date,$authorFilter: [ItemId], $searchbar: String!, $orderBy: [BlogPostModelOrderBy]) {
+      allBlogPosts(first: $first, orderBy: $orderBy, filter: { publishDate: { gt: $dateFrom, lt: $dateTo} ,authors: { eq: $authorFilter }, title: { matches: { pattern: $searchbar } } }) {
         title
         authors {
           image {
@@ -39,10 +41,26 @@ server.get("/", (request, response) => {
         introTitle
         slug
       }
-    }`, {"orderBy": "updatedAt_DESC", "searchbar": searchTerm, "authorFilter": authorFilter, "dateFrom": dateFrom, "dateTo": dateTo}).then((data) => {
-      const totalBlogs = data.data.allBlogPosts.length
+    }`, {"orderBy": sortBy, "searchbar": searchTerm, "authorFilter": authorFilter, "dateFrom": dateFrom, "dateTo": dateTo, "first": blogAmount}).then((data) => {
+      
+      const queryParams = request.originalUrl.slice(request.originalUrl.indexOf('?'));
 
-      response.render('index', { posts: data.data.allBlogPosts, totalBlogs });
+      const totalBlogs = data.data.allBlogPosts.length // 20
+
+      const huidigePage = parseInt(request.query.page) || 1; // Haalt de huidige pagina op die mee wordt gestuurd wanneer de gebruiker op een volgende pagina klikt
+      const aantalBlogs = 10; // Aantal blogs die op 1 pagina te zien zijn
+
+      // Bepaalt de huidige blogs die gezien moeten worden
+      const startIndex = (huidigePage - 1) * aantalBlogs;
+      const eindIndex = startIndex + aantalBlogs;
+      const paginatedBlogs = data.data.allBlogPosts.slice(startIndex, eindIndex);
+
+      const results = paginatedBlogs.length
+
+      // Berekent totaal aan pagina's
+      const totaalPagina = Math.ceil(totalBlogs / aantalBlogs);
+
+      response.render('index', {totalBlogs, paginatedBlogs, huidigePage, totaalPagina, results, queryParams });
   })
 })
 

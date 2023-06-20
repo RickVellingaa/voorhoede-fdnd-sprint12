@@ -1,7 +1,7 @@
 <%- include('./partials/head') %>
 
 <main>
-    <div class="searchbar">
+    <div class="search-bar">
         <div>
             <p class="search-blog">Search blogs</p>
             <form id="search" method="get" action="/">
@@ -9,9 +9,12 @@
                 <input autocomplete="off" id="searchbars" type="search" name="searchbar">
                 <button aria-label="Zoek knop om naar een blogbericht te zoeken" type="submit"></button>
             </form>
-            <div class="sort">
+            <div class="results">
                 <div>
                     <p><%= totalBlogs %> blogs found</p>
+                    <p><% if (totalBlogs == 0) { %>
+                        <a href="/">Back to blogpage</a>
+                      <% } %></p>
                 </div>
             </div>
         </div>
@@ -32,8 +35,8 @@
                     </div>
                 </div>
             </section>
-            <section class="author-filter">
-                <h3>Authors</h3>
+            <fieldset class="author-filter authors">
+                <legend>Authors</legend>
                 <div>
                     <input form="search" value="340340" type="radio" name="authorid" id="Jasper">
                     <label for="Jasper">Jasper</label>
@@ -58,10 +61,21 @@
                     <input form="search" value="122281136" type="radio" name="authorid" id="Roos">
                     <label for="Roos">Roos</label>
                 </div>
+                <!-- <input form="search" type="submit" value="Filter"> -->
+            </fieldset>
+            <section class="sort-filter">
+                <h3>Sort By</h3>
+                <select form="search" name="sort" id="sortfilter">
+                    <option value="_updatedAt_ASC">Date ASC</option>
+                    <option value="_updatedAt_DESC">Date DESC</option>
+                    <option value="title_ASC">Title ASC</option>
+                    <option value="title_DESC">Title DESC</option>
+                </select>
+                <input form="search" type="submit" value="Filter">
             </section>
         </section>
         <ul>
-            <% posts.forEach(post => { %>
+            <% paginatedBlogs.forEach(post => { %>
             <li>
                 <article>
                     <div>
@@ -85,6 +99,23 @@
             </li>
             <% }); %>
         </ul>
+    </div>
+    <div class="pagination">
+        <% if (huidigePage > 1) { %>
+            <a href="?page=<%= huidigePage - 1 %><%= queryParams %>">Previous</a>
+          <% } %>
+          
+          <% for (let i = 1; i <= totaalPagina; i++) { %>
+            <% if (i === huidigePage) { %>
+              <span><%= i %></span>
+            <% } else { %>
+              <a href="?page=<%= i %><%= queryParams %>"><%= i %></a>
+            <% } %>
+          <% } %>
+          
+          <% if (huidigePage < totaalPagina) { %>
+            <a href="?page=<%= huidigePage + 1 %><%= queryParams %>">Next</a>
+          <% } %>
     </div>
 </main>
 

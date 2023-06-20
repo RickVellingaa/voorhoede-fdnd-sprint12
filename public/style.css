@@ -112,14 +112,14 @@ main {
 
 /* Searchbar */
 
-.searchbar {
+.search-bar {
     padding-bottom: 75px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.searchbar label {
+.search-bar label {
     display: block;
     margin-bottom: 5px;
     color: var(--primary-blauw);
@@ -143,7 +143,7 @@ main {
     font-family: RegularFont;
 }
 
-.searchbar form {
+.search-bar form {
     color: #555;
     display: flex;
     width: 40vw;
@@ -152,13 +152,36 @@ main {
     border-radius: 5px;
 }
 
-.author-filter h3 {
+.results {
+    display: block;
+    font-family: RegularFont;
+    font-size: 16px;
+    margin-top: 3px;
+}
+
+.results div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.results div a {
+    text-decoration: underline;
+    color: var(--primary-blauw);
+    cursor: pointer;
+}
+
+.author-filter h3, fieldset legend {
     font-family: BoldFont;
     font-size: 18px;
     margin: 10px 0;
 }
 
-.searchbar input[type="search"] {
+fieldset {
+    border: none;
+}
+
+.search-bar input[type="search"] {
     border: none;
     background: transparent;
     margin: 0;
@@ -174,7 +197,7 @@ input[type="search"]::placeholder {
     color: #bbb;
 }
 
-.searchbar button[type="submit"] {
+.search-bar button[type="submit"] {
     text-indent: -999px;
     overflow: hidden;
     width: 40px;
@@ -187,23 +210,26 @@ input[type="search"]::placeholder {
     opacity: 0.9;
 }
 
-.searchbar button[type="submit"]:hover {
+.search-bar button[type="submit"]:hover {
     opacity: 1;
 }
 
-.searchbar button[type="submit"]:focus,
-.searchbar input[type="search"]:focus, .searchbar input[type="checkbox"]:focus {
+.search-bar button[type="submit"]:focus,
+.search-bar input[type="search"]:focus, .search-bar input[type="checkbox"]:focus {
     outline: none;
     background: transparent;
 }
-
 
 .author-filter div {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
     font-size: 16px;
+}
+
+.authors div {
+    margin-bottom: 7px;
 }
 
 [type="radio"]:checked,
@@ -419,6 +445,77 @@ time {
 
 time {
     margin-top: 3px;
+}
+
+input[type="submit"] {
+    color: var(--white);
+    position: relative;
+    background: var(--primary-blauw);
+    border: 0;
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 8px 1.5em;
+    color: #fff;
+    font-size: 14px;
+    font-family: BoldFont;
+    transition: .3s;
+}
+
+.sort-filter h3 {
+    font-family: BoldFont;
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.sort-filter select {
+    display: block;
+    padding: 5px;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    font-family: RegularFont;
+    font-size: 16px;
+    border: 1px solid var(--primary-blauw);
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+select:focus-visible {
+    outline: var(--primary-blauw);
+}
+
+.sort-filter select option {
+    font-size: 16px;
+    outline: none;
+}
+
+/* Pagination */
+
+.pagination {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.pagination>* {
+    margin: 3px;
+}
+
+.pagination a, .pagination span{
+    font-family: RegularFont;
+    text-decoration: none;
+    color: var(--tekst-kleur);
+}
+
+.pagination span {
+    color: var(--primary-blauw);
+}
+
+.pagination .next, .pagination .previous {
+    font-family: BoldFont;
+    color: var(--primary-blauw);
 }
 
 /* Footer */
