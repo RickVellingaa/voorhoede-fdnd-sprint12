@@ -42,6 +42,37 @@ Voor dit project zijn de volgende technieken gebruikt:
  * EJS
  * NodeJS
  * GraphQL
+ * Adaptable
+
+## GraphQL query
+
+Tijdens dit project is er gebruik gemaakt van GraphQL, met GraphQL kun je altijd de data aanpassen die je ophaalt, zo zorg je er eigenlijk altijd voor dat je niet overbodige data ophaalt en alleen echt de data ophaalt/gebruikt wat je nodig hebt.
+
+```js
+allBlogPosts() {
+  title
+  authors {
+    image {
+      url
+    }
+    name
+    id
+  }
+  publishDate
+  introTitle
+  slug
+}
+```
+## Zero state
+
+Voor de deeltaak van de Zero state heb ik van het design van de opdrachtgever, 6 verschillende schetsen gemaakt met bij elke een andere visuele hierarchie stijl en layout. Dit hebben we gedaan om te kijken of er een andere manier is om beter de content te tonen, zoals de titel op een andere plek of een zoekbalk boven aan de pagina i.p.v. onderaan. In de wiki van de deeltaak heb ik schetsen gemaakt en beschreven en ook de uitgewerkte schetsen van Figma en code uitgelegd.
+
+Link naar Zero state schetsen: [Schetsen zero state](https://github.com/RickVellingaa/proof-of-concept-zero-state/wiki/Design-%7C-Schetsen-Zero-state#schetsen--zero-state) <br>
+Link naar Zero state uitwerking Figma: [Figma uitwerking zero state](https://github.com/RickVellingaa/proof-of-concept-zero-state/wiki/Design-%7C-Schetsen-Zero-state#figma-uitwerking--zero-state) <br>
+Link naar Zero state uitwerking code: [Code uitwerking zero state](https://github.com/RickVellingaa/proof-of-concept-zero-state/wiki/Bouwen-%7C-Uitwerking-code) <br>
+Feedback klant: [Feedback over zero state](https://github.com/RickVellingaa/proof-of-concept-zero-state/wiki/Feedback-klant) <br>
+
+Door deze deeltaak en de feedback van de klant heb ik mijn design aangepast, de blog berichten waren eerst geen echte blokken, dit heb ik aangepast aangezien ik dit meer op een blog pagina vond lijkem dan het aangeleverde design. Ook heb ik de filters een beetje aangepast, zo heb ik bijvoorbeeld de authors onder elkaar meteen gezet i.p.v. met een dropdown. Deze aanpassingen vonden de opdrachtgevers ook mooi bedacht dus heb het uiteindelijk zo gelaten.
 
 ## Installatie
 
@@ -53,10 +84,10 @@ Open de terminal in Visual Studio Code en installeer Node doormiddel van het com
 
 ## Bronnen
 
-[DOCS Sprint12](https://github.com/RickVellingaa/voorhoede-fdnd-sprint12/blob/main/docs/FDND%20API%20Assignment.pdf)
-[Voorhoede officele website](https://www.voorhoede.nl/en/)
-[ChatGPT](https://chat.openai.com/)
-[Developer Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/Location)
+[DOCS Sprint12](https://github.com/RickVellingaa/voorhoede-fdnd-sprint12/blob/main/docs/FDND%20API%20Assignment.pdf) <br>
+[Voorhoede officele website](https://www.voorhoede.nl/en/) <br>
+[ChatGPT](https://chat.openai.com/) <br>
+[Developer Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/Location) 
 
 ## Licentie
 
