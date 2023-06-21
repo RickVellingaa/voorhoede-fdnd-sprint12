@@ -301,6 +301,12 @@ input[type="search"]::placeholder {
     font-size: 16px;
 }
 
+.searchlabel {
+    position: absolute;
+    visibility: hidden;
+    left: -999px;
+    top: 0;
+}
 
   .date-filter {
     display: flex;
